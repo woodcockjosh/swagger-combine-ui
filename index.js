@@ -6,7 +6,7 @@ const ControllerApiDocs = require('./lib/controllers/api-docs')
 
 const app = new Koa()
 const router = new Router()
-const controllerApiDocs = new ControllerApiDocs({file: 'swagger.yaml'})
+const controllerApiDocs = new ControllerApiDocs({ file: process.env.SWAGGER_CONFIG_PATH || '/app/swagger.yaml'})
 
 const asciiText = `
    _____                                        ______                __    _               __  ______
@@ -22,10 +22,12 @@ process.on('SIGINT', process.exit)
 process.on('SIGTERM', process.exit)
 
 router.get('/ping', (ctx) => ctx.body = '')
-    .get('/swagger.json', controllerApiDocs.getApiDocsHandle())
+    .get('/swagger/swagger.json', controllerApiDocs.getApiDocsHandle())
 
 console.log(asciiText);
-console.log(`UI: http://localhost:${process.env.EXTERNAL_HTTP_PORT}/swagger`)
+if(process.env.EXTERNAL_HTTP_PORT){
+    console.log(`UI: http://localhost:${process.env.EXTERNAL_HTTP_PORT}/swagger`)
+}
 
 app
     .use(mount('/swagger', serve('node_modules/swagger-ui-dist')))

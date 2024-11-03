@@ -8,6 +8,7 @@ services:
         USER: root
     environment:
       EXTERNAL_HTTP_PORT: 4000
+      SWAGGER_CONFIG_PATH: /app/config/swagger.yaml
     command:
       - npm
       - run
@@ -19,4 +20,4 @@ services:
       - "./lib:/app/lib"
       - "./index.js:/app/index.js"
       - "./index.html:/app/index.html"
-      - "./swagger.yaml:/app/swagger.yaml"
+      - "./swagger.yaml:/app/config/swagger.yaml"
