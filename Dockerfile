@@ -1,6 +1,7 @@
-FROM node:14-slim
+FROM node:20.11.1-alpine
 
-ENV NODE_ENV="production"
+ARG NODE_ENV=production
+ENV NODE_ENV=$NODE_ENV
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -9,9 +10,9 @@ COPY package.json package-lock.json ./
 RUN npm install && \
     npm cache clean --force
 
-COPY index.js swagger.yaml ./
+COPY index.js index.html swagger.yaml ./
 COPY index.html ./node_modules/swagger-ui-dist/index.html
 COPY lib ./lib
 
 EXPOSE 3000
-ENTRYPOINT ["node", "index.js"]
+CMD ["node", "index.js"]

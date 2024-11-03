@@ -1,0 +1,20 @@
+
+services:
+  swagger-combine-ui:
+    build:
+      context: ./
+      args:
+        NODE_ENV: development
+    environment:
+      EXTERNAL_HTTP_PORT: 4000
+    command:
+      - npm
+      - run
+      - dev
+    ports:
+      - "4000:3000"
+    volumes:
+      - "./package.json:/app/package.json"
+      - "./lib:/app/lib"
+      - "./index.js:/app/index.js"
+      - "./swagger.yaml:/app/swagger.yaml"
