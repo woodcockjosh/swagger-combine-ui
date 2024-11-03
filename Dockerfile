@@ -1,6 +1,7 @@
 FROM node:20.11.1-alpine
 
 ARG NODE_ENV=production
+ARG USER=node
 ENV NODE_ENV=$NODE_ENV
 
 RUN mkdir -p /app
@@ -16,3 +17,5 @@ COPY lib ./lib
 
 EXPOSE 3000
 CMD ["node", "index.js"]
+
+USER $USER

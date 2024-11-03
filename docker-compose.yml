@@ -5,6 +5,7 @@ services:
       context: ./
       args:
         NODE_ENV: development
+        USER: root
     environment:
       EXTERNAL_HTTP_PORT: 4000
     command:
