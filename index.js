@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const Router = require('@koa/router')
 const serve = require('koa-static')
+const mount = require('koa-mount');
 const ControllerApiDocs = require('./lib/controllers/api-docs')
 
 const app = new Koa()
@@ -24,9 +25,9 @@ router.get('/ping', (ctx) => ctx.body = '')
     .get('/swagger.json', controllerApiDocs.getApiDocsHandle())
 
 console.log(asciiText);
-console.log(`UI: http://localhost:${process.env.EXTERNAL_HTTP_PORT}`)
+console.log(`UI: http://localhost:${process.env.EXTERNAL_HTTP_PORT}/swagger`)
 
 app
-    .use(serve('node_modules/swagger-ui-dist'))
+    .use(mount('/swagger', serve('node_modules/swagger-ui-dist')))
     .use(router.routes())
     .listen(3000)

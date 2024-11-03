@@ -17,4 +17,5 @@ services:
       - "./package.json:/app/package.json"
       - "./lib:/app/lib"
       - "./index.js:/app/index.js"
+      - "./index.html:/app/index.html"
       - "./swagger.yaml:/app/swagger.yaml"

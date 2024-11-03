@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "cp -f index.html node_modules/swagger-ui-dist/index.html",
     "start": "node index.js",
-    "dev": "npm run prestart; ./node_modules/.bin/nodemon -e js,json,yaml index.js",
+    "dev": "npm run prestart; ./node_modules/.bin/nodemon -e js,json,yaml,html index.js",
     "lint": "$(npm bin)/eslint .",
     "test": "npm run lint; npm run unit",
     "unit": "$(npm bin)/mocha --reporter spec test/spec/*"
@@ -41,6 +41,7 @@
     "@koa/router": "^8.0.8",
     "api-spec-converter": "^2.11.0",
     "koa": "^2.11.0",
+    "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
     "swagger-combine": "^1.0.0",
     "swagger-ui-dist": "^3.25.0"
